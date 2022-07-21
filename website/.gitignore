@@ -7,6 +7,9 @@
 
 /.yarn/
 
+
+/docs
+
 # testing
 /coverage
 
