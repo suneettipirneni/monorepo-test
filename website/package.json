@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "prebuild": "yarn node gatherDocs.mjs",
+    "prebuild": "yarn node gatherDocs.js",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
