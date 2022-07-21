@@ -3,11 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "prebuild": "yarn node gatherDocs.js",
+    "prebuild": "yarn generateDocs",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "generateDocs": "yarn node generateDocs.js"
   },
   "dependencies": {
     "@microsoft/api-extractor-model": "^7.22.0",
