@@ -1,6 +1,7 @@
 import { ApiModel } from "@microsoft/api-extractor-model";
 import { GetStaticProps, InferGetStaticPropsType } from "next/types";
 import path from "path";
+import config from "../../packageConfig.json";
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const model = new ApiModel();
@@ -23,7 +24,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 export async function getStaticPaths() {
   const model = new ApiModel();
 
-  const paths = ["foo"].flatMap((name) => {
+  const paths = config.packages.flatMap((name) => {
     const pkg = model.loadPackage(
       path.join(process.cwd(), "docs", `${name}.api.json`)
     );
