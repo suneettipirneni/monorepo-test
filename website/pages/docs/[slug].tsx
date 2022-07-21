@@ -1,18 +1,28 @@
 import { ApiModel } from "@microsoft/api-extractor-model";
+import { GetStaticProps, InferGetStaticPropsType } from "next/types";
 import path from "path";
 
-export async function getStaticProps() {
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+  const model = new ApiModel();
+  const pkg = model.loadPackage(
+    path.join(process.cwd(), "docs", "foo.api.json")
+  );
+
+  const entry = pkg?.entryPoints[0]!;
+
+  const item = entry.findMembersByName(params!.slug as string)[0]!;
+
   return {
     props: {
-      foo: "bar",
+      item: item.displayName,
     },
   };
-}
+};
 
 export async function getStaticPaths() {
   console.log("test");
-  const model = new ApiModel();
 
+  const model = new ApiModel();
   const pkg = model.loadPackage(
     path.join(process.cwd(), "docs", "foo.api.json")
   );
@@ -25,6 +35,8 @@ export async function getStaticPaths() {
   };
 }
 
-export default function Item() {
-  return <div>Hello world</div>;
+export default function Item(
+  props: InferGetStaticPropsType<typeof getStaticProps>
+) {
+  return <div>{props.item}</div>;
 }
