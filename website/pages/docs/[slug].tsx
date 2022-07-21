@@ -30,9 +30,7 @@ export async function getStaticPaths() {
 
     const entry = pkg?.entryPoints[0]!;
 
-    const items = entry.findMembersByName("*");
-
-    return items.map((item) => {
+    return entry.members.map((item) => {
       return `/docs/${item.displayName}`;
     });
   });
