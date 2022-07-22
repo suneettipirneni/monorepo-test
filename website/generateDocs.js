@@ -45,9 +45,14 @@ const config = require("./packageConfig.json");
     }
   }
 
-  const { stdout, stderr } = await exec("yarn --cwd ../foo build");
-  console.log(stdout);
-  console.error(stderr);
+  await Promise.all(
+    config.packages.map((name) =>
+      exec(`yarn --cwd ../${name} build`).then(({ stdout, stderr }) => {
+        console.log(stdout);
+        console.log(stderr);
+      })
+    )
+  );
 
   // Generate the documentation files.
   generateDocFiles();
