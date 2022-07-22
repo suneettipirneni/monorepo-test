@@ -13,7 +13,8 @@
   "dependencies": {
     "@microsoft/api-extractor": "^7.28.6",
     "@microsoft/api-extractor-model": "^7.22.1",
-    "next": "12.2.2",
+    "json-loader": "^0.5.7",
+    "next": "^12.2.3-canary.17",
     "react": "18.2.0",
     "react-dom": "18.2.0"
   },

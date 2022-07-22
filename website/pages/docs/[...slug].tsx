@@ -1,11 +1,11 @@
 import { GetStaticProps, InferGetStaticPropsType } from "next/types";
 import path from "path";
 import config from "../../packageConfig.json";
-import { ApiModel } from "@microsoft/api-extractor-model";
+import { ApiModel } from "../../util";
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   // console.log("static props");
-  // const model = new ApiModel();
+  const model = new ApiModel();
   // console.log(model.packages.length);
   // if (!model.packages.length) {
   //   console.log("loading model...");
@@ -37,22 +37,22 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 };
 
 export async function getStaticPaths() {
-  console.log("static paths");
-  const model = new ApiModel();
-  // First generate paths on-the-fly for our current branch.
-  for (const packageName of config.packages) {
-    model.loadPackage(
-      path.join(process.cwd(), "docs", `${packageName}.api.json`)
-    );
-  }
+  // console.log("static paths");
+  // const model = new ApiModel();
+  // // First generate paths on-the-fly for our current branch.
+  // for (const packageName of config.packages) {
+  //   model.loadPackage(
+  //     path.join(process.cwd(), "docs", `${packageName}.api.json`)
+  //   );
+  // }
 
-  const paths = model.packages.flatMap((pkg) => {
-    return pkg.entryPoints[0]!.members.map((member) => {
-      return `/docs/${pkg.displayName.replace("@discordjs/", "")}/${
-        member.displayName
-      }`;
-    });
-  });
+  // const paths = model.packages.flatMap((pkg) => {
+  //   return pkg.entryPoints[0]!.members.map((member) => {
+  //     return `/docs/${pkg.displayName.replace("@discordjs/", "")}/${
+  //       member.displayName
+  //     }`;
+  //   });
+  // });
 
   return {
     paths: [],

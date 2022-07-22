@@ -1,3 +1,1 @@
-import { ApiModel } from "@microsoft/api-extractor-model";
-
-export const model = new ApiModel();
+export * from "@microsoft/api-extractor-model";
